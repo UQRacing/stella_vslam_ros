@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(stella_vslam_ros LANGUAGES CXX C)
+# Required for FS module
+set(CMAKE_CXX_STANDARD 17)
 
 if(POLICY CMP0042)
     cmake_policy(SET CMP0042 NEW)
@@ -135,7 +137,7 @@ find_package(Threads REQUIRED)
 find_package(stella_vslam REQUIRED)
 
 # OpenCV
-find_package(OpenCV 3.3.1 QUIET)
+find_package(OpenCV 4.2.0 REQUIRED EXACT)
 if(NOT OpenCV_FOUND)
     find_package(OpenCV 4.0)
     if(NOT OpenCV_FOUND)

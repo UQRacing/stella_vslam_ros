@@ -17,8 +17,8 @@
 #include <spdlog/spdlog.h>
 #include <popl.hpp>
 
-#include <ghc/filesystem.hpp>
-namespace fs = ghc::filesystem;
+#include <filesystem>
+namespace fs = std::filesystem;
 
 #ifdef USE_STACK_TRACE_LOGGER
 #include <glog/logging.h>
@@ -105,7 +105,7 @@ void tracking(const std::shared_ptr<stella_vslam_ros::system>& slam_ros,
         SLAM->save_map_database(map_db_path);
     }
 
-    if (track_times.size()) {
+    if (!track_times.empty()) {
         std::sort(track_times.begin(), track_times.end());
         const auto total_track_time = std::accumulate(track_times.begin(), track_times.end(), 0.0);
         std::cout << "median tracking time: " << track_times.at(track_times.size() / 2) << "[s]" << std::endl;
